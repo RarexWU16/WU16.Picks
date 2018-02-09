@@ -1,0 +1,66 @@
+<template>
+    <div class="image-wrapper" :style="padding(image.ratio)">
+        <div class="image">
+            <progressive-img :src="url(image)" :placeholder="url(image, 'sm')" :blur="5" :aspect-ratio="image.ratio" />
+
+            <div class="control-panel">
+                <div class="d-flex justify-content-center">
+                    <div class="col-3 px-0 mx-0">
+                        <button v-on:click="toggleBasket" :class="{btn: true, 'btn-success': !image.isInBasket, 'btn-danger': image.isInBasket}">
+                            <i :class="{fa: true, 'fa-plus': !image.isInBasket, 'fa-times': image.isInBasket}"></i>
+                        </button>
+                    </div>
+                    <div class="col-3 col-sm-3 px-0 mx-0">
+                        <a :href="url(image)" download class="btn btn-primary">
+                            <i class="fa fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style scoped>
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+        background-color: #F9F9F9;
+    }
+
+    .image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .control-panel {
+        opacity: 0;
+        z-index: 3002;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        text-align: center;
+        color: #fff;
+        padding: 0;
+        margin: 0;
+        transition: opacity 0.5s;
+    }
+
+    .control-panel .btn {
+        width: 100%;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    .image-wrapper:hover .control-panel {
+        display: block;
+        opacity: 1;
+    }
+</style>
+<script src="./image.ts"></script>

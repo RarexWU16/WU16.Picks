@@ -1,0 +1,60 @@
+<template>
+    <div>
+        <div class="row pt-5">
+            <h2 class="text-center col-12">Basket</h2>
+        </div>
+
+        <div v-if="!isLoading" class="pt-2">
+            <div class="row mt-3" v-for="image in images">
+                <div class="col-md-6 col-sm-12 mx-auto px-0 d-flex pl-3" style="background-color:#f0f0f0;">
+                    <div class="padding pl-0 d-inline-block col-6" style="white-space:nowrap;text-overflow: ellipsis;overflow:hidden;">
+                        {{image.fileName}}
+                    </div>
+                    <div class="btn-group col-6 px-0 mx-0">
+                        <div class="col-6 px-0 mx-0">
+                            <a download :href="url(image)" class="btn w100 btn-primary padding">
+                                <i class="fa fa-download"></i>
+                            </a>
+                        </div>
+                        <div class="col-6 px-0 mx-0">
+                            <button v-on:click="toggleBasket(image.id)" class="btn w100 btn-danger padding">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-3" v-if="images.length == 0">
+                <div class="col-12">
+                    <h3 class="text-center">Nothing in Basket</h3>
+                </div>
+            </div>
+
+            <div v-if="images.length > 1" class="row mt-3">
+                <div class="col-md-6 mx-auto px-0">
+                    <a href="/api/zipfile" class="btn btn-success btn-block">
+                        <i class="fa fa-download"></i> Download as ZIP file
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pt-5 row" v-else>
+            <div class="col-12">
+                <spinner />
+            </div>
+        </div>
+    </div>
+</template>
+
+<style scoped>
+    .padding {
+        padding: 0.45rem 1.4rem;
+    }
+
+    .btn {
+        width: 100%;
+        display: inline-block;
+    }
+</style>
+<script src="./basket.ts"></script>

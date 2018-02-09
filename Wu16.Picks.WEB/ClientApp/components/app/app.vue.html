@@ -1,0 +1,27 @@
+<template>
+    <div id='app-root' class="container-fluid">
+        <menu-component></menu-component>
+        <div class="col-sm-12">
+            <transition name="fade">
+                <router-view></router-view>
+            </transition>
+        </div>
+    </div>
+</template>
+
+<style scoped>
+    .fade-enter-active, .fade-leave-active {
+        transition-property: opacity;
+        transition-duration: .25s;
+    }
+
+    .fade-enter-active {
+        transition-delay: .25s;
+    }
+
+    .fade-enter, .fade-leave-active {
+        opacity: 0
+    }
+</style>
+
+<script src="./app.ts"></script>

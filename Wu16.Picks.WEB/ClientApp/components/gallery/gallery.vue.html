@@ -1,0 +1,11 @@
+<template>
+    <div>
+        <div :key="index" class="row" v-for="(row, index) in rows">
+            <div :key="image.id" v-for="image in row" class="col-sm-4 mt-4">
+                <custom-img :image="image" />
+            </div>
+        </div>
+    </div>
+</template>
+
+<script src="./gallery.ts"></script>

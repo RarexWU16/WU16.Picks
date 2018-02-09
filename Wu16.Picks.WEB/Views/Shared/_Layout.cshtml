@@ -1,0 +1,34 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration conf
+
+@{
+    var basePath = conf.GetValue<string>("base-url");
+    var imagePath = basePath + "images/";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="dns-prefetch" href="@basePath" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+    <environment exclude="Development">
+        <link rel="stylesheet" href="@(basePath)dist/site.css" asp-append-version="true" />
+    </environment>
+
+    <script>
+        window.baseUrl = "@imagePath";
+    </script>
+</head>
+<body>
+    @RenderBody()
+
+    <script src="@(basePath)dist/vendor.js" asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,13 @@
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration conf
+@{
+    var basePath = conf.GetValue<string>("base-url");
+
+    ViewData["Title"] = "Home - Picks";
+}
+
+<div id='app-root'>Loading...</div>
+
+@section scripts {
+    <script src="@(basePath)dist/main.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,27 @@
+<template>
+    <div>
+        <div class="row">
+            <div class="col-md-6 mx-auto mt-5">
+                <select v-on:change="onChange" v-model="category" class="form-control form-control-lg">
+                    <option selected="selected" value="">All Categories</option>
+                    <option v-bind:value="category.id" v-for="category in categories">{{category.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <gallery v-if="images.length != 0" v-bind:images="images" />
+            </div>
+            <mugen-scroll v-if="!isAtEnd" class="col-12" :handler="fetchData" :handleOnMount="false" :should-handle="shouldLoad">
+                <div class="spinner-wrapper mx-auto mt-5 mb-5">
+                    <spinner />
+                </div>
+            </mugen-scroll>
+            <div v-else class="col-12 mt-5 mb-5">
+                <h3 class="text-center">No more results</h3>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script src="./home.ts"></script>
